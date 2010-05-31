@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang='en'>
+  <head>
+    <title>File: README.rdoc [URI-Redis: support for parsing redis://host:port/dbindex]</title>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
+    <script type='text/javascript'>
+      //<![CDATA[
+        function popupCode(url) {
+          window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+        }
+        
+        function toggleCode(id) {
+          var code = document.getElementById(id)
+        
+          code.style.display = code.style.display != 'block' ? 'block' : 'none'
+          return true
+        }
+        
+        // Make codeblocks hidden by default
+        document.writeln('<' + 'style type="text/css">.method .source pre { display: none }<\/style>')
+      //]]>
+    </script>
+  </head>
+  <body class='page'>
+    <div class='file' id='wrapper'>
+      <div class='header'>
+        <div class='name'>README.rdoc</div>
+        <div class='paths'>
+          README.rdoc
+        </div>
+        <div class='last-update'>
+          Last Update:
+          <span class='datetime'>2010-05-30 20:20:33 -0400</span>
+        </div>
+      </div>
+      <div id='content'>
+        <div id='text'>
+          <div id='description'>
+            <h1>URI-<a href="../classes/Redis.html">Redis</a> v0.2</h1>
+            <p>
+            redis://host:port/dbindex
+            </p>
+            <h2>Usage</h2>
+            <pre>require 'uri/redis'&#x000A;&#x000A;conf = URI.parse 'redis://localhost:8999/2'&#x000A;conf.host                 # =&gt; localhost&#x000A;conf.port                 # =&gt; 8999&#x000A;conf.db                   # =&gt; 2</pre>
+            <h2>Installation</h2>
+            <p>
+            Get it in one of the following ways:
+            </p>
+            <ul>
+            <li><tt>gem install uri-redis</tt>
+            
+            </li>
+            <li><tt>git clone git://github.com/delano/uri-redis.git</tt>
+            
+            </li>
+            </ul>
+            <h2>More Information</h2>
+            <ul>
+            <li><a href="http://github.com/delano/uri-redis">Codes</a>
+            
+            </li>
+            <li><a href="http://delano.github.com/uri-redis">RDocs</a>
+            
+            </li>
+            </ul>
+            <h2>Credits</h2>
+            <ul>
+            <li>Delano Mandelbaum (<a href="http://solutious.com">solutious.com</a>)
+            
+            </li>
+            </ul>
+            <h2>License</h2>
+            <p>
+            See <a href="LICENSE_txt.html">LICENSE.txt</a>
+            </p>
+          </div>
+          <div id='section'>
+          </div>
+        </div>
+      </div>
+      <div id='footer-push'></div>
+    </div>
+    <div id='footer'>
+      <a href="http://github.com/mislav/hanna/tree/master"><strong>Hanna</strong> RDoc template</a>
+    </div>
+  </body>
+</html>
