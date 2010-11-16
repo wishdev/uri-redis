@@ -1,8 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>: URI::Redis [URI-Redis: support for parsing redis://host:port/dbindex]</title>
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <title>: URI::Redis [redis-dump 0.4.0]</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
     <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
       //<![CDATA[
@@ -50,11 +50,13 @@
             </ol>
             <h3>public instance</h3>
             <ol>
-              <li><a href="#M000009">conf</a></li>
-              <li><a href="#M000007">db</a></li>
-              <li><a href="#M000008">db=</a></li>
+              <li><a href="#M000011">conf</a></li>
+              <li><a href="#M000009">db</a></li>
+              <li><a href="#M000010">db=</a></li>
+              <li><a href="#M000007">key</a></li>
+              <li><a href="#M000008">key=</a></li>
               <li><a href="#M000006">request_uri</a></li>
-              <li><a href="#M000010">serverid</a></li>
+              <li><a href="#M000012">serverid</a></li>
             </ol>
           </div>
           <div id='section'>
@@ -62,6 +64,11 @@
               <h2>Constants</h2>
               <div class='name-list'>
                 <table summary='Constants'>
+                  <tr class='top-aligned-row context-row'>
+                    <td class='context-item-name'>VERSION</td>
+                    <td>=</td>
+                    <td class='context-item-value'>'0.4' unless defined?(URI::Redis::VERSION)</td>
+                  </tr>
                   <tr class='top-aligned-row context-row'>
                     <td class='context-item-name'>DEFAULT_PORT</td>
                     <td>=</td>
@@ -87,7 +94,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000004-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000004-source'>    <span class="ruby-comment cmt"># File lib/uri/redis.rb, line 9</span>&#x000A; 9:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">args</span>)&#x000A;10:       <span class="ruby-identifier">tmp</span> = <span class="ruby-constant">Util</span><span class="ruby-operator">::</span><span class="ruby-identifier">make_components_hash</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">args</span>)&#x000A;11:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">tmp</span>)&#x000A;12:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000004-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 10</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">args</span>)&#x000A;      <span class="ruby-identifier">tmp</span> = <span class="ruby-constant">Util</span><span class="ruby-operator">::</span><span class="ruby-identifier">make_components_hash</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">args</span>)&#x000A;      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">tmp</span>)&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-class' id='method-M000005'>
@@ -100,47 +107,73 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000005-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000005-source'>    <span class="ruby-comment cmt"># File lib/uri/redis.rb, line 14</span>&#x000A;14:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">arg</span>)&#x000A;15:       <span class="ruby-keyword kw">super</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">arg</span>)&#x000A;16:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000005-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 15</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">arg</span>)&#x000A;      <span class="ruby-keyword kw">super</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">arg</span>)&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Public instance methods</h2>
+              <div class='method public-instance' id='method-M000011'>
+                <a name='M000011'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>conf</span>
+                  <span class='arguments'>()</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000011-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000011-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 45</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">conf</span>&#x000A;      <span class="ruby-identifier">tmp</span> = {&#x000A;        <span class="ruby-identifier">:host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">host</span>,&#x000A;        <span class="ruby-identifier">:port</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">port</span>,&#x000A;        <span class="ruby-identifier">:db</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">db</span>&#x000A;      }&#x000A;      <span class="ruby-identifier">tmp</span>[<span class="ruby-identifier">:password</span>] = <span class="ruby-identifier">password</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">password</span>&#x000A;      <span class="ruby-identifier">tmp</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
               <div class='method public-instance' id='method-M000009'>
                 <a name='M000009'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>conf</span>
+                  <span class='name'>db</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000009-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000009-source'>    <span class="ruby-comment cmt"># File lib/uri/redis.rb, line 31</span>&#x000A;31:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">conf</span>&#x000A;32:       <span class="ruby-identifier">tmp</span> = {&#x000A;33:         <span class="ruby-identifier">:host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">host</span>,&#x000A;34:         <span class="ruby-identifier">:port</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">port</span>,&#x000A;35:         <span class="ruby-identifier">:db</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">db</span>&#x000A;36:       }&#x000A;37:       <span class="ruby-identifier">tmp</span>[<span class="ruby-identifier">:password</span>] = <span class="ruby-identifier">password</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">password</span>&#x000A;38:       <span class="ruby-identifier">tmp</span>&#x000A;39:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000009-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 33</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">db</span>&#x000A;      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;/#{DEFAULT_DB}&quot;</span>&#x000A;      (<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'/'</span>)[<span class="ruby-value">1</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_DB</span>).<span class="ruby-identifier">to_i</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                </div>
+              </div>
+              <div class='method public-instance' id='method-M000010'>
+                <a name='M000010'>      </a>
+                <div class='synopsis'>
+                  <span class='name'>db=</span>
+                  <span class='arguments'>(val)</span>
+                </div>
+                <div class='source'>
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000010-source'); return false">
+                    [show source]
+                  </a>
+                  <pre id='M000010-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 38</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">db=</span>(<span class="ruby-identifier">val</span>)&#x000A;      <span class="ruby-identifier">current_key</span> = <span class="ruby-identifier">key</span>&#x000A;      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span> = <span class="ruby-node">&quot;/#{val}&quot;</span>&#x000A;      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;/#{current_key}&quot;</span>&#x000A;      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000007'>
                 <a name='M000007'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>db</span>
+                  <span class='name'>key</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000007-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000007-source'>    <span class="ruby-comment cmt"># File lib/uri/redis.rb, line 22</span>&#x000A;22:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">db</span>&#x000A;23:       <span class="ruby-identifier">val</span> = <span class="ruby-identifier">path</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-value str">'/'</span>, <span class="ruby-value str">''</span>)&#x000A;24:       <span class="ruby-identifier">val</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-value">? </span><span class="ruby-constant">DEFAULT_DB</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">to_i</span>&#x000A;25:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000007-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 23</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">key</span>&#x000A;      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">nil?</span>&#x000A;      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;/#{DEFAULT_DB}&quot;</span>&#x000A;      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'/'</span>)[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">'/'</span>)&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000008'>
                 <a name='M000008'>      </a>
                 <div class='synopsis'>
-                  <span class='name'>db=</span>
+                  <span class='name'>key=</span>
                   <span class='arguments'>(val)</span>
                 </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000008-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000008-source'>    <span class="ruby-comment cmt"># File lib/uri/redis.rb, line 27</span>&#x000A;27:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">db=</span>(<span class="ruby-identifier">val</span>)&#x000A;28:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span> = <span class="ruby-node">&quot;/#{val}&quot;</span>&#x000A;29:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000008-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 29</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">key=</span>(<span class="ruby-identifier">val</span>)&#x000A;      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span> = <span class="ruby-value str">'/'</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">db</span>, <span class="ruby-identifier">val</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">'/'</span>)&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000006'>
@@ -153,20 +186,20 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000006-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000006-source'>    <span class="ruby-comment cmt"># File lib/uri/redis.rb, line 18</span>&#x000A;18:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">request_uri</span>&#x000A;19:       <span class="ruby-identifier">r</span> = <span class="ruby-identifier">path_query</span>&#x000A;20:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000006-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 19</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">request_uri</span>&#x000A;      <span class="ruby-identifier">r</span> = <span class="ruby-identifier">path_query</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
-              <div class='method public-instance' id='method-M000010'>
-                <a name='M000010'>      </a>
+              <div class='method public-instance' id='method-M000012'>
+                <a name='M000012'>      </a>
                 <div class='synopsis'>
                   <span class='name'>serverid</span>
                   <span class='arguments'>()</span>
                 </div>
                 <div class='source'>
-                  <a class='source-toggle' href='#' onclick="toggleCode('M000010-source'); return false">
+                  <a class='source-toggle' href='#' onclick="toggleCode('M000012-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000010-source'>    <span class="ruby-comment cmt"># File lib/uri/redis.rb, line 41</span>&#x000A;41:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serverid</span>&#x000A;42:       <span class="ruby-value str">'redis://%s:%s/%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">db</span>]&#x000A;43:     <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000012-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 55</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serverid</span>&#x000A;      <span class="ruby-value str">'redis://%s:%s/%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">db</span>]&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
