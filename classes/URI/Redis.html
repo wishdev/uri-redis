@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>: URI::Redis [redis-dump 0.4.0]</title>
+    <title>: URI::Redis [redis-dump 0.4.1]</title>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
     <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
@@ -160,7 +160,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000007-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000007-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 23</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">key</span>&#x000A;      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">nil?</span>&#x000A;      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;/#{DEFAULT_DB}&quot;</span>&#x000A;      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'/'</span>)[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">'/'</span>)&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000007-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 23</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">key</span>&#x000A;      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">nil?</span>&#x000A;      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span> <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;/#{DEFAULT_DB}&quot;</span>&#x000A;      (<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'/'</span>)[<span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>] <span class="ruby-operator">||</span> []).<span class="ruby-identifier">join</span>(<span class="ruby-value str">'/'</span>)&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000008'>
