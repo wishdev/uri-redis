@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>: Redis [redis-dump 0.4.1]</title>
+    <title>: Redis [redis-dump 0.4.2]</title>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
     <link href='../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
@@ -69,7 +69,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000001-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000001-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 66</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">uri</span>(<span class="ruby-identifier">conf</span>={})&#x000A;    <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-value str">'redis://%s:%s/%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">conf</span>[<span class="ruby-identifier">:host</span>], <span class="ruby-identifier">conf</span>[<span class="ruby-identifier">:port</span>], <span class="ruby-identifier">conf</span>[<span class="ruby-identifier">:db</span>]]&#x000A;  <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000001-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 98</span>&#x000A;  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">uri</span>(<span class="ruby-identifier">conf</span>={})&#x000A;    <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-value str">'redis://%s:%s/%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">conf</span>[<span class="ruby-identifier">:host</span>], <span class="ruby-identifier">conf</span>[<span class="ruby-identifier">:port</span>], <span class="ruby-identifier">conf</span>[<span class="ruby-identifier">:db</span>]]&#x000A;  <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <h2>Public instance methods</h2>
@@ -83,7 +83,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000002-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000002-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 70</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">uri</span>&#x000A;      <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-value str">'redis://%s:%s/%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-ivar">@client</span>.<span class="ruby-identifier">host</span>, <span class="ruby-ivar">@client</span>.<span class="ruby-identifier">port</span>, <span class="ruby-ivar">@client</span>.<span class="ruby-identifier">db</span>]&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000002-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 102</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">uri</span>&#x000A;      <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span> <span class="ruby-value str">'redis://%s:%s/%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-ivar">@client</span>.<span class="ruby-identifier">host</span>, <span class="ruby-ivar">@client</span>.<span class="ruby-identifier">port</span>, <span class="ruby-ivar">@client</span>.<span class="ruby-identifier">db</span>]&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang='en'>
   <head>
-    <title>: URI::Redis [redis-dump 0.4.1]</title>
+    <title>: URI::Redis [redis-dump 0.4.2]</title>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'>
     <link href='../../rdoc-style.css' media='screen' rel='stylesheet' type='text/css'>
     <script type='text/javascript'>
@@ -117,11 +117,23 @@
                   <span class='name'>conf</span>
                   <span class='arguments'>()</span>
                 </div>
+                <div class='description'>
+                  <p>
+                  Returns a hash suitable for sending to <a
+                  href="Redis.html#M000005">Redis.new</a>. The hash is generated from the
+                  host, port, db and password from the <a href="../URI.html">URI</a> as well
+                  as any query vars.
+                  </p>
+                  <p>
+                  e.g.
+                  </p>
+                  <pre>uri = URI.parse &quot;redis://127.0.0.1/6/?timeout=5&quot;&#x000A;uri.conf&#x000A;  # =&gt; {:db=&gt;6, :timeout=&gt;&quot;5&quot;, :host=&gt;&quot;127.0.0.1&quot;, :port=&gt;6379}</pre>
+                </div>
                 <div class='source'>
                   <a class='source-toggle' href='#' onclick="toggleCode('M000011-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000011-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 45</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">conf</span>&#x000A;      <span class="ruby-identifier">tmp</span> = {&#x000A;        <span class="ruby-identifier">:host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">host</span>,&#x000A;        <span class="ruby-identifier">:port</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">port</span>,&#x000A;        <span class="ruby-identifier">:db</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">db</span>&#x000A;      }&#x000A;      <span class="ruby-identifier">tmp</span>[<span class="ruby-identifier">:password</span>] = <span class="ruby-identifier">password</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">password</span>&#x000A;      <span class="ruby-identifier">tmp</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000011-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 55</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">conf</span>&#x000A;      <span class="ruby-identifier">hsh</span> = {&#x000A;        <span class="ruby-identifier">:host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">host</span>,&#x000A;        <span class="ruby-identifier">:port</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">port</span>,&#x000A;        <span class="ruby-identifier">:db</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">db</span>&#x000A;      }.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">parse_query</span>(<span class="ruby-identifier">query</span>)&#x000A;      <span class="ruby-identifier">hsh</span>[<span class="ruby-identifier">:password</span>] = <span class="ruby-identifier">password</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">password</span>&#x000A;      <span class="ruby-identifier">hsh</span>&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
               <div class='method public-instance' id='method-M000009'>
@@ -199,7 +211,7 @@
                   <a class='source-toggle' href='#' onclick="toggleCode('M000012-source'); return false">
                     [show source]
                   </a>
-                  <pre id='M000012-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 55</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serverid</span>&#x000A;      <span class="ruby-value str">'redis://%s:%s/%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">db</span>]&#x000A;    <span class="ruby-keyword kw">end</span></pre>
+                  <pre id='M000012-source'><span class="ruby-comment cmt"># File lib/uri/redis.rb, line 65</span>&#x000A;    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">serverid</span>&#x000A;      <span class="ruby-value str">'redis://%s:%s/%s'</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">db</span>]&#x000A;    <span class="ruby-keyword kw">end</span></pre>
                 </div>
               </div>
             </div>
