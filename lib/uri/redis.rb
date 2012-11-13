@@ -21,8 +21,6 @@ module URI
     end
     
     def key
-      return if self.path.nil?
-      self.path ||= "/#{DEFAULT_DB}"
       (self.path.split('/')[2..-1] || []).join('/')
     end
     
@@ -31,15 +29,15 @@ module URI
     end
     
     def db
-      self.path ||= "/#{DEFAULT_DB}"
       (self.path.split('/')[1] || DEFAULT_DB).to_i
     end
     
     def db=(val)
-      current_key = key
-      self.path = "/#{val}"
-      self.path << "/#{current_key}"
-      self.path
+      self.path = '/' << [val, key].join('/')
+    end
+
+    def db?
+      !(self.path.split('/')[1].nil? || self.path.split('/')[1] == "")
     end
     
     # Returns a hash suitable for sending to Redis.new. 

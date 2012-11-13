@@ -29,3 +29,33 @@ uri = URI.parse 'redis://localhost/2/v1:arbitrary:key'
 uri.key = 'v2:arbitrary:key'
 uri.to_s
 #=> 'redis://localhost/2/v2:arbitrary:key'
+
+## Can determine if db was provided
+uris = []
+uris << URI.parse('redis://localhost')
+
+uris << URI.parse('redis://localhost/')
+
+uris << URI.parse('redis://localhost/2')
+
+uris << URI.parse('redis://localhost//option')
+
+uris << URI.parse('redis://localhost/2/option')
+
+uris << URI.parse('redis://localhost')
+uris[-1].path = '/'
+
+uris << URI.parse('redis://localhost')
+uris[-1].path = '/2'
+
+uris << URI.parse('redis://localhost')
+uris[-1].path = '//option'
+
+uris << URI.parse('redis://localhost')
+uris[-1].path = '/2/option'
+
+uris << URI.parse('redis://localhost')
+uris[-1].db
+
+uris.map { |uri| uri.db? }
+#=> [false, false, true, false, true, false, true, false, true, false]
